@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Agendamento - EventPro Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="./img/favicon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #titulo {
+            font-family: sans-serif;
+            color: #1100ff;
+            margin-left: 7%;
+        }
+
+        #subtitulo {
+            font-family: sans-serif;
+            color: #1b0b61;
+            margin-left: 10%;
+        }
+
+        body {
+            background-color: #F0F8FF;
+            font-family: sans-serif;
+            font-size: 1em;
+            color: #59429d;
+            margin-left: 36%;
+            margin-top: 2%;
+            justify-content: center;
+        }
+
+        input, select, textarea, button {
+            font-family: sans-serif;
+            font-size: 1em;
+            color: #59429d;
+            border-radius: 5px;
+        }
+
+        .grupo:before, .grupo:after {
+            display: table;
+        }
+
+        .grupo:after {
+            clear: both;
+        }
+
+        .campo {
+            margin-bottom: 1em;
+        }
+
+        .campo label {
+            margin-bottom: 0.2em;
+            color: #3f0ed0;
+            display: block;
+        }
+
+        fieldset.grupo .campo {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .campo input[type="text"], .campo input[type="email"], .campo select, .campo textarea {
+            padding: 0.2em;
+            border: 1px solid #59429d;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+
+        .campo select option {
+            padding-right: 1em;
+        }
+
+        .campo input:focus, .campo select:focus, .campo textarea:focus {
+            background: #ffffff;
+        }
+
+        .botao {
+            font-size: 1.2em;
+            background: #1800f2;
+            border: 0;
+            margin-bottom: 1em;
+            color: #ffffff;
+            padding: 0.2em 0.6em;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .botao:hover {
+            background: #0072eb;
+            box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: none;
+        }
+
+        .botao, select {
+            cursor: pointer;
+        }
+
+        fieldset.grupo, div#check {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1 id="titulo">Agendamento de Evento</h1>
+        <p id="subtitulo">Complete suas informações</p>
+        <br>
+    </div>
+
+    <form>
+
+        <fieldset class="grupo">
+            <div class="campo">
+                <label for="nome_evento"><strong>Nome do Evento</strong></label>
+                <input type="text" name="nome_evento" id="nome_evento" required>
+            </div>
+
+            <div class="campo">
+                <label for="local"><strong>Local</strong></label>
+                <input type="text" name="local" id="local" required>
+            </div>
+        </fieldset>
+
+        <div class="campo">
+            <label for="previsao_pessoas"><strong>Previsão de Pessoas</strong></label>
+            <input type="number" name="previsao_pessoas" id="previsao_pessoas" required>
+        </div>
+
+        <div class="campo">
+            <label for="data_evento"><strong>Data do Evento</strong></label>
+            <input type="text" name="data_evento" id="data_evento" class="inputUser" required>
+        </div>
+
+        <fieldset class="grupo">
+            <div class="campo">
+                <label for="tipo_evento"><strong>Qual o tipo de evento:</strong></label>
+                <select id="tipo_evento" required>
+                    <option selected disabled value="">Selecione</option>
+                    <option>Conferência</option>
+                    <option>Workshop</option>
+                    <option>Casamento</option>
+                    <option>Show</option>
+                    <option>Festa</option>
+                    <option>Outros</option>
+                </select>
+            </div>
+        </fieldset>
+
+        
+        <div class="campo">
+            <br>
+            <label for="experiencia"><strong>Descreva mais sobre seu evento: </strong></label>
+            <textarea rows="4" style="width: 26em" id="experiencia" name="experiencia"></textarea>
+        </div>
+
+        
+        <button class="botao btn btn-primary" type="submit" onsubmit="">Agendar</button>
+
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#data_evento").datepicker({
+                dateFormat: 'dd/mm/yy',
+                minDate: 0 
+            });
+        });
+    </script>
+</body>
+
+</html>

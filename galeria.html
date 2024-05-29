@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Galeria de fotos - EventPro Solution</title>
+    <link rel="icon" href="./img/favicon.png">
+
+
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        header{
+            background-color: #000000;
+            color: #fff;
+            padding-bottom: 1rem;
+            text-align: center; 
+        }
+        
+        .logo{
+            width: 150px;
+        }
+
+        header>div:nth-child(2){
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        section>img{
+            width: 100%;
+            border-radius: 7px;
+            margin-bottom: 10px;
+        }
+        section>img:hover{
+            transition: transform 0.2s ease;
+            transform: scale(1.1)
+        }
+        section{
+            column-count: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div><img src="./img/logo.png" alt="Logo" class="logo"></div>
+        <div><a href="home.html" class="btn btn-primary">Home</a></div>
+        <h1>Galeria de fotos</h1>
+    </header>
+    <br>
+    <section>
+        <img src="./galeria/britt-gaiser-hSAlu33padA-unsplash.jpg" alt="">
+        <img src="./galeria/chuttersnap-Q_KdjKxntH8-unsplash.jpg" alt="">
+        <img src="./galeria/danny-howe-bn-D2bCvpik-unsplash.jpg" alt="">
+        <img src="./galeria/jakob-dalbjorn-cuKJre3nyYc-unsplash.jpg" alt="">
+        <img src="./galeria/kate-trysh-ZUWls_bDgAk-unsplash.jpg" alt="">
+        <img src="./galeria/teemu-paananen-bzdhc5b3Bxs-unsplash.jpg" alt="">
+        <img src="./galeria/tengku-nadia-fz8_SONkBB8-unsplash.jpg" alt="">
+    </section>
+</body>
+</html>
