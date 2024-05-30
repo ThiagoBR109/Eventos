@@ -49,7 +49,6 @@ session_start();
     
     <section class="depoimentos">
         <h2>Depoimentos</h2>
-        <p>Depoimentos de clientes satisfeitos com os serviços prestados.</p>
         <div class="testimonial">
             <p>"A EventPro Solutions tornou nossos eventos japoneses ainda mais imersivos e memoráveis. Serviço excepcional!"</p>
             <p>- RisingSun Events</p>
