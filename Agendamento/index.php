@@ -1,4 +1,5 @@
 <?php
+    include_once "Controller/check_login.php";
     include_once "Controller/conexao.php";
 ?>
 <!DOCTYPE html>

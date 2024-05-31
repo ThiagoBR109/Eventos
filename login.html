@@ -37,5 +37,26 @@
             <a href="cadastro.html">Não tem login? Cadastre-se</a>
         </form>
     </main>
+    <script>
+        // Função para obter os parâmetros da query string
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryArray = queryString.split("&");
+            queryArray.forEach(param => {
+                const [key, value] = param.split("=");
+                params[key] = decodeURIComponent(value.replace(/\+/g, " "));
+            });
+            return params;
+        }
+
+        // Verifica se há uma mensagem na query string
+        const params = getQueryParams();
+        console.log(params); // Adiciona log para verificar os parâmetros
+
+        if (params.message) {
+            alert(params.message);
+        }
+    </script>
 </body>
 </html>
