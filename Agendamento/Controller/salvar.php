@@ -1,36 +1,41 @@
 <?php
-    include_once "conexao.php";
+include_once "conexao.php";
+session_start();
 
+$usuario_id = $_SESSION['usuario_id'];
+$codigo = filter_input(INPUT_GET, "codigo", FILTER_SANITIZE_SPECIAL_CHARS);
+$nome = filter_input(INPUT_GET, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+$local = filter_input(INPUT_GET, "local", FILTER_SANITIZE_SPECIAL_CHARS);
+$data = filter_input(INPUT_GET, "data", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $codigo = filter_input(INPUT_GET, "codigo", FILTER_SANITIZE_SPECIAL_CHARS);
-    $nome = filter_input(INPUT_GET, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    $local = filter_input(INPUT_GET, "local", FILTER_SANITIZE_SPECIAL_CHARS);
-    $data = filter_input(INPUT_GET, "data", FILTER_SANITIZE_SPECIAL_CHARS);
+if ($codigo > 0) {
+    // Atualiza o evento existente
+    $sql = "UPDATE eventos SET eventos_nome = ?, eventos_local = ?, eventos_data = ? WHERE eventos_id = ? AND usuario_id = ?";
+    $stmt = $link->prepare($sql);
+    $stmt->bind_param('sssii', $nome, $local, $data, $codigo, $usuario_id);
+} else {
+    // Insere um novo evento
+    $sql = "INSERT INTO eventos (usuario_id, eventos_nome, eventos_local, eventos_data) VALUES (?, ?, ?, ?)";
+    $stmt = $link->prepare($sql);
+    $stmt->bind_param('isss', $usuario_id, $nome, $local, $data);
+}
 
-    if ($codigo > 0){
-        $sql = "UPDATE eventos SET eventos_nome ='$nome', eventos_local='$local', eventos_data='$data' where eventos_id = $codigo;";
-    } else{
-        $sql = "INSERT INTO eventos values (null, '$nome', '$local','$data');";
-    }
-    
+if ($stmt->execute()) {
+    echo "
+        <script>
+            alert('Salvo com sucesso!');
+            window.location.href = '../index.php';
+        </script>
+    ";
+} else {
+    echo "
+        <script>
+            alert('Erro ao Salvar!');
+            window.location.href = '../index.php';
+        </script>
+    ";
+}
 
-    $inserir = mysqli_query($link, $sql);
-    
-    if ($inserir) {
-        echo "
-            <script>
-                alert('Salvo com sucesso!');
-                window.location.href = '../index.php';
-            </script>
-        ";
-    } else {
-        echo "
-            <script>
-                alert('Erro ao Salvar!');
-                window.location.href = '../index.php';
-            </script>
-        ";
-    }
-    
-    mysqli_close($link);
+$stmt->close();
+$link->close();
 ?>

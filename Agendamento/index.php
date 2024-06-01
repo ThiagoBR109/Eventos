@@ -1,6 +1,17 @@
 <?php
-    include_once "Controller/check_login.php";
-    include_once "Controller/conexao.php";
+include_once "Controller/check_login.php";
+include_once "Controller/conexao.php";
+
+// Remova esta linha
+// session_start(); 
+
+$usuario_id = $_SESSION['usuario_id'];
+
+$sql = "SELECT * FROM eventos WHERE usuario_id = ?";
+$stmt = $link->prepare($sql);
+$stmt->bind_param('i', $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,13 +64,11 @@
                         <div class="row">
                             <div class="col">
                                 <a href="index.php">
-                                    <button type="button" class="btn btn-primary form-control botaoLimpar">Limpar
-                                    </button>
+                                    <button type="button" class="btn btn-primary form-control botaoLimpar">Limpar</button>
                                 </a>
                             </div>
                             <div class="col">
-                                <button type="submit" class="btn btn-primary form-control botaoSalvar">Salvar
-                                </button>
+                                <button type="submit" class="btn btn-primary form-control botaoSalvar">Salvar</button>
                             </div>
                         </div>
                     </div>
@@ -89,9 +98,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $sql = "Select * from eventos";
-                            $pesquisar = mysqli_query($link, $sql);
-                            while ($linha = $pesquisar->fetch_assoc()) {
+                            while ($linha = $result->fetch_assoc()) {
                                 echo 
                                     "<tr>
                                         <td>".$linha['eventos_id']."</td>
@@ -99,11 +106,7 @@
                                         <td>".$linha['eventos_local']."</td>
                                         <td>".$linha['eventos_data']."</td>
                                         <td>
-                                            <a href='?
-                                            codigo=".$linha['eventos_id']."&
-                                            nome=".$linha['eventos_nome']."&
-                                            local=".$linha['eventos_local']."&
-                                            data=".$linha['eventos_data']."'>
+                                            <a href='?codigo=".$linha['eventos_id']."&nome=".$linha['eventos_nome']."&local=".$linha['eventos_local']."&data=".$linha['eventos_data']."'>
                                                 <img src='imagens/editar.png' class='imgtabela'>
                                             </a>
                                         </td>
@@ -120,7 +123,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
