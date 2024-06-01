@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             if (password_verify($senha, $row['registro_senha'])) {
-                $_SESSION['usuario_id'] = $row['registro_id']; // Adiciona o ID do usuário na sessão
+                $_SESSION['usuario_id'] = $row['registro_id']; 
                 $_SESSION['usuario_logado'] = $row['registro_email'];
                 header("Location: /Eventos/home.php?login=success");
                 exit();

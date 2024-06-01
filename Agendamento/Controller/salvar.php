@@ -9,12 +9,10 @@ $local = filter_input(INPUT_GET, "local", FILTER_SANITIZE_SPECIAL_CHARS);
 $data = filter_input(INPUT_GET, "data", FILTER_SANITIZE_SPECIAL_CHARS);
 
 if ($codigo > 0) {
-    // Atualiza o evento existente
     $sql = "UPDATE eventos SET eventos_nome = ?, eventos_local = ?, eventos_data = ? WHERE eventos_id = ? AND usuario_id = ?";
     $stmt = $link->prepare($sql);
     $stmt->bind_param('sssii', $nome, $local, $data, $codigo, $usuario_id);
 } else {
-    // Insere um novo evento
     $sql = "INSERT INTO eventos (usuario_id, eventos_nome, eventos_local, eventos_data) VALUES (?, ?, ?, ?)";
     $stmt = $link->prepare($sql);
     $stmt->bind_param('isss', $usuario_id, $nome, $local, $data);

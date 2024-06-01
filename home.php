@@ -110,14 +110,11 @@ session_start();
             </ul>
         </div>
     </footer>
-
     <script>
-        // Verifica se o login foi realizado com sucesso e exibe o alerta
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('login') && urlParams.get('login') === 'success') {
             alert('Login realizado com sucesso!');
         }
-        // Verifica se o logout foi realizado com sucesso e exibe o alerta
         if (urlParams.has('logout') && urlParams.get('logout') === 'success') {
             alert('Logout realizado com sucesso!');
             }

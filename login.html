@@ -38,7 +38,6 @@
         </form>
     </main>
     <script>
-        // Função para obter os parâmetros da query string
         function getQueryParams() {
             const params = {};
             const queryString = window.location.search.substring(1);
@@ -49,10 +48,9 @@
             });
             return params;
         }
-
-        // Verifica se há uma mensagem na query string
+        
         const params = getQueryParams();
-        console.log(params); // Adiciona log para verificar os parâmetros
+        console.log(params);
 
         if (params.message) {
             alert(params.message);

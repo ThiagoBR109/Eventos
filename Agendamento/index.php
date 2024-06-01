@@ -1,9 +1,6 @@
 <?php
 include_once "Controller/check_login.php";
-include_once "Controller/conexao.php";
-
-// Remova esta linha
-// session_start(); 
+include_once "Controller/conexao.php"; 
 
 $usuario_id = $_SESSION['usuario_id'];
 
