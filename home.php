@@ -21,7 +21,7 @@ session_start();
         <nav>
             <ul>
                 <li>
-                    <a href="galeria.html" target="_blank" class="btn btn-primary">Galeria de fotos</a>
+                    <a href="galeria.html" class="btn btn-primary">Galeria de fotos</a>
                 </li>
                 <?php if (isset($_SESSION['usuario_logado'])): ?>
                 <li>
