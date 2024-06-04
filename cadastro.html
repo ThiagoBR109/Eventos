@@ -78,9 +78,26 @@
         #submit:hover{
             background-image: linear-gradient(to right,rgb(0, 80, 172), rgb(80, 19, 195));
         }
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgb(24, 97, 170);
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        .home-button:hover {
+            background-color: rgb(0, 80, 172);
+        }
     </style>
 </head>
 <body>
+    <a href="login.html" class="home-button">Voltar</a>
     <div class="box">
         <form action="./Agendamento/Controller/salvar_cadastro.php" method="post">
             <fieldset>
@@ -127,7 +144,7 @@
                     <input type="text" name="cpf" id="cpf" class="inputUser" required>
                     <label for="cpf" class="labelInput">CPF</label>
                 </div>
-                <br><br>
+		<br><br>
                 <div class="inputBox">
                     <input type="password" name="senha" id="senha" class="inputUser" required>
                     <label for="senha" class="labelInput">Senha</label>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'Agendamento/Controller/conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -74,24 +75,27 @@ session_start();
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Energize Events</td>
-                    <td>Centro de Convenções</td>
-                    <td>15 de julho</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Aurora Productions</td>
-                    <td>Hotel Lux</td>
-                    <td>28 de agosto</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Momentum Entertainment</td>
-                    <td>Espaço Cultural</td>
-                    <td>10 de setembro</td>
-                </tr>
+                <?php
+                if ($link) {
+                    $sql = "SELECT eventos_id, eventos_nome, eventos_local, eventos_data FROM eventos";
+                    $result = mysqli_query($link, $sql);
+
+                    if ($result) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<th scope='row'>{$row['eventos_id']}</th>";
+                            echo "<td>{$row['eventos_nome']}</td>";
+                            echo "<td>{$row['eventos_local']}</td>";
+                            echo "<td>" . date('d M Y', strtotime($row['eventos_data'])) . "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>Nenhum evento encontrado</td></tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>Erro na conexão com o banco de dados</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
         <a href="./Agendamento/index.php" class="btn btn-primary">Agende seu evento</a>
@@ -117,7 +121,7 @@ session_start();
         }
         if (urlParams.has('logout') && urlParams.get('logout') === 'success') {
             alert('Logout realizado com sucesso!');
-            }
+        }
     </script>
 
 </body>
