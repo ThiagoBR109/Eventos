@@ -19,6 +19,8 @@ $result = $stmt->get_result();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="icon" href="../img/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
@@ -37,7 +39,7 @@ $result = $stmt->get_result();
                 <img src="imagens/logo.png" alt="" class="img-produto">
             </div>
             <div class="col-8">
-                <form method="GET" action="Controller/salvar.php">
+                <form method="GET" action="Controller/salvar.php" id="eventForm">
                     <div class="mt-3 form-floating">
                         <input type="hidden" class="form-control desabilitado" id="codigo" name="codigo" readonly
                         value="<?php echo filter_input(INPUT_GET, "codigo", FILTER_SANITIZE_SPECIAL_CHARS);?>">
@@ -104,12 +106,12 @@ $result = $stmt->get_result();
                                         <td>".$linha['eventos_local']."</td>
                                         <td>".$linha['eventos_data']."</td>
                                         <td>
-                                            <a href='?codigo=".$linha['eventos_id']."&nome=".$linha['eventos_nome']."&local=".$linha['eventos_local']."&data=".$linha['eventos_data']."'>
+                                            <a href='?codigo=".$linha['eventos_id']."&nome=".$linha['eventos_nome']."&local=".$linha['eventos_local']."&data=".$linha['eventos_data']."' class='edit-link'>
                                                 <img src='imagens/editar.png' class='imgtabela'>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href='Controller/excluir.php?codigo=".$linha['eventos_id']."'>
+                                            <a href='Controller/excluir.php?codigo=".$linha['eventos_id']."' class='delete-link'>
                                                 <img src='imagens/excluir.png' class='imgtabela'>
                                             </a>
                                         </td>
@@ -123,5 +125,61 @@ $result = $stmt->get_result();
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#eventForm').submit(function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: "Você confirma as informações?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                    }
+                });
+            });
+
+            $('.delete-link').on('click', function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: "Você deseja excluir este evento?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, excluir!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+
+            $('.edit-link').on('click', function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: "Você deseja editar este evento?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, editar!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

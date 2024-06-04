@@ -20,17 +20,47 @@ if ($codigo > 0) {
 
 if ($stmt->execute()) {
     echo "
-        <script>
-            alert('Salvo com sucesso!');
-            window.location.href = '../index.php';
-        </script>
+        <html>
+        <head>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        </head>
+        <body>
+            <script>
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Salvo com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../index.php';
+                    }
+                });
+            </script>
+        </body>
+        </html>
     ";
 } else {
     echo "
-        <script>
-            alert('Erro ao Salvar!');
-            window.location.href = '../index.php';
-        </script>
+        <html>
+        <head>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        </head>
+        <body>
+            <script>
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Erro ao salvar!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../index.php';
+                    }
+                });
+            </script>
+        </body>
+        </html>
     ";
 }
 
