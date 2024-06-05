@@ -82,7 +82,7 @@ a:hover{
 
 .divisoria{
     margin: 0;
-    border: none; /* Remova a borda padrão */
+    border: none; 
     border-top: 1px solid #ccc;
     position: absolute;
     top: 0;

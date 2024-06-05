@@ -1,28 +1,56 @@
 <?php
-    include_once "conexao.php";
+include_once "conexao.php";
 
+$codigo = filter_input(INPUT_GET, "codigo", FILTER_SANITIZE_SPECIAL_CHARS);
+$sql = "DELETE FROM eventos WHERE eventos_id = $codigo;";
 
-    $codigo = filter_input(INPUT_GET, "codigo", FILTER_SANITIZE_SPECIAL_CHARS);
-    $sql = "DELETE FROM eventos WHERE eventos_id = $codigo;";
+$inserir = mysqli_query($link, $sql);
 
-    $inserir = mysqli_query($link, $sql);
-    
-    if ($inserir) {
-        echo "
+if ($inserir) {
+    echo "
+        <html>
+        <head>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        </head>
+        <body>
             <script>
-                alert('Evento excluído com sucesso!');
-                window.location.href = '../index.php';
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Evento excluído com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../index.php';
+                    }
+                });
             </script>
-        ";
-    } else {
-        echo "
+        </body>
+        </html>
+    ";
+} else {
+    echo "
+        <html>
+        <head>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        </head>
+        <body>
             <script>
-                alert('Erro ao excluir!');
-                window.location.href = '../index.php';
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Erro ao excluir!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../index.php';
+                    }
+                });
             </script>
-        ";
-    }
-    
-    mysqli_close($link);
-    
+        </body>
+        </html>
+    ";
+}
+
+mysqli_close($link);
 ?>
