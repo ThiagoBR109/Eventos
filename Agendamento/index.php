@@ -46,17 +46,17 @@ $result = $stmt->get_result();
                         <label for="codigo" class="form-label">Código</label>
                     </div>
                     <div class="mt-3 form-floating">
-                        <input type="text" class="form-control" id="nome" name="nome"
+                        <input type="text" class="form-control " id="nome" name="nome"
                         value="<?php echo filter_input(INPUT_GET, "nome", FILTER_SANITIZE_SPECIAL_CHARS);?>">
                         <label for="nome" class="form-label">Nome do Evento</label>
                     </div>
                     <div class="mt-3 form-floating">
-                        <input type="text" class="form-control" id="local" name="local"
+                        <input type="text" class="form-control " id="local" name="local"
                         value="<?php echo filter_input(INPUT_GET, "local", FILTER_SANITIZE_SPECIAL_CHARS);?>">
                         <label for="local" class="form-label">Local</label>
                     </div>
                     <div class="mt-3 form-floating">
-                        <input type="datetime-local" class="form-control" id="data" name="data"
+                        <input type="datetime-local" class="form-control " id="data" name="data"
                         value="<?php echo filter_input(INPUT_GET, "data", FILTER_SANITIZE_SPECIAL_CHARS);?>">
                         <label for="data" class="form-label">Data</label>
                     </div>
@@ -85,41 +85,43 @@ $result = $stmt->get_result();
         </div>
         <div class="row">
             <div class="col">
-                <table class="table table-light table-hover">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome do evento</th>
-                            <th>Local</th>
-                            <th>Data</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            while ($linha = $result->fetch_assoc()) {
-                                echo 
-                                    "<tr>
-                                        <td>".$linha['eventos_id']."</td>
-                                        <td>".$linha['eventos_nome']."</td>
-                                        <td>".$linha['eventos_local']."</td>
-                                        <td>".$linha['eventos_data']."</td>
-                                        <td>
-                                            <a href='?codigo=".$linha['eventos_id']."&nome=".$linha['eventos_nome']."&local=".$linha['eventos_local']."&data=".$linha['eventos_data']."' class='edit-link'>
-                                                <img src='imagens/editar.png' class='imgtabela'>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href='Controller/excluir.php?codigo=".$linha['eventos_id']."' class='delete-link'>
-                                                <img src='imagens/excluir.png' class='imgtabela'>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                            }
-                        ?>
-                    </tbody>
-                </table>
+                <div class="">
+                    <table class="table table-light table-hover ">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome do evento</th>
+                                <th>Local</th>
+                                <th>Data</th>
+                                <th>Editar</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                while ($linha = $result->fetch_assoc()) {
+                                    echo
+                                        "<tr>
+                                            <td>".$linha['eventos_id']."</td>
+                                            <td>".$linha['eventos_nome']."</td>
+                                            <td>".$linha['eventos_local']."</td>
+                                            <td>".$linha['eventos_data']."</td>
+                                            <td>
+                                                <a href='?codigo=".$linha['eventos_id']."&nome=".$linha['eventos_nome']."&local=".$linha['eventos_local']."&data=".$linha['eventos_data']."' class='edit-link'>
+                                                    <img src='imagens/editar.png' class='imgtabela'>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href='Controller/excluir.php?codigo=".$linha['eventos_id']."' class='delete-link'>
+                                                    <img src='imagens/excluir.png' class='imgtabela'>
+                                                </a>
+                                            </td>
+                                        </tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

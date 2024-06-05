@@ -21,15 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: /Eventos/home.php?login=success");
                 exit();
             } else {
-                echo "Senha incorreta.";
+                header("Location: /Eventos/login.html?message=Senha+incorreta!");
+                exit();
             }
         } else {
-            echo "Nenhum usuário encontrado com esse email.";
+            header("Location: /Eventos/login.html?message=Nenhum+usuário+encontrado+com+esse+email.");
+            exit();
         }
 
         mysqli_stmt_close($stmt);
     } else {
-        echo "Por favor, preencha todos os campos.";
+        header("Location: /Eventos/login.html?message=Por+favor,+preencha+todos+os+campos.");
+        exit();
     }
 
     mysqli_close($link);
