@@ -1,0 +1,12 @@
+.form-container {
+    max-width: 350px;
+    padding: 1rem;
+}
+html, body {
+    height: 100%;
+}
+.home-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
